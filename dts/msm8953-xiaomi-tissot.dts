@@ -1,0 +1,35 @@
+// SPDX-License-Identifier: GPL-2.0-only
+
+/dts-v1/;
+
+/include/ "msm8953.dtsi"
+
+/ {
+	// This is used by the bootloader to find the correct DTB 
+	qcom,msm-id = <293 0x0>;
+	qcom,board-id = <0x1000b 0>;
+	
+	model = "Xiaomi Mi A1";
+	compatible = "xiaomi,tissot", "qcom,msm8953", "lk2nd,device";
+
+	// Bootloader won't continue if it can't delete some nodes from below
+	soc {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0x0 0x0 0x0 0xffffffff>;
+	
+		qcom,memshare {
+			qcom,client_1 {
+				qcom,peripheral-size = <0x200000>;
+			};
+
+			qcom,client_2 {
+				qcom,peripheral-size = <0x300000>;
+			};
+
+			qcom,client_3 {
+				qcom,peripheral-size = <0x500000>;
+			};
+		};
+	};
+};
